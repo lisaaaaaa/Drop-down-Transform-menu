@@ -1,0 +1,118 @@
+<!DOCTYPE>
+<!--
+    学习功能：实现下拉多级菜单
+    author: lisa与2018-5-27
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉菜单</title>
+    <style type="text/css">
+        .top-nav {
+            font-size: 12px;
+            font-weight: bold;
+            list-style: none;
+        }
+        .top-nav li {
+            float: left;
+            margin-right: 1px;
+        }
+        .top-nav li a {
+            line-height: 20px;
+            text-decoration: none;
+            background: #DDDDDD;
+            color: #666666;
+            display: block;
+            width: 80px;
+            text-align: center;
+        }
+        .top-nav li a:hover {
+            background: red;
+            color: white;
+        }
+        .top-nav li ul {
+            display: none;
+            list-style: none;
+            padding: 0;
+            position: relative;
+        }
+        .top-nav li:hover ul {
+            display: block;
+            width: 80px;
+        }
+        .top-nav li:hover ul li ul {
+            display: none;
+        }
+        .top-nav li ul li:hover ul {
+            display: block;
+            position: absolute;
+            top: 0px;
+            left: 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="top-nav">
+        <li><a href="#">首页</a></li>
+        <li><a href="#">课程大厅</a></li>
+        <li><a href="#">学习中心 +</a>
+            <ul>
+                <li><a href="#">前端课程 +</a>
+                    <ul>
+                        <li><a href="#">javaScript</a></li>
+                        <li><a href="#">CSS</a></li>
+                        <li><a href="#">JQuery</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">手机开发</a>
+                    <ul>
+                        <li><a href="#">ios</a></li>
+                        <li><a href="#">安卓</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">后台编程</a></li>
+            </ul>
+        </li>
+        <li><a href="#">关于我们</a></li>
+    </ul>
+</body>
+</html>
+<!--ie6兼容hover  -->
+<script type="text/javascript">
+    window.onload = function () {
+        var isIE = !!window.ActiveXObject;
+        var isIE6 = isIE && !window.XMLHttpRequest;
+        if (ifIF6) {
+            var Lis = document.getElementsByTagName("li");
+            for (var i = 0; i < Lis.length; i++) {
+                Lis[i].onmouseover = function () {
+                    var u = this.getElementsByTagName("ul")[0];
+                    if (u != undefined) {
+                        u.style.display = "block";
+                    }
+                }
+
+                Lis[i].onmouseover = function () {
+                    var u = this.getElementsByTagName("ul")[0];
+                    if (u = undefined) {
+                        u.style.display = "none";
+                    }
+                }
+            }
+        }
+    }
+
+    //用Jquery实现兼容,首先引入包<script typr="" url="">
+    $(function () {
+        //更高版本的Jquery使用$.support.leadingWhitespace来判断IE浏览器是多少
+        if ($.browser.mise && $.browser.version.substr(0, 1) < 7) {
+            $("li").has("ul").mouseover(function () {
+                $(this).children("ul").css("display", "block");
+            }).mouseout(function () {
+                $(this).children("ul").css("display", "none");
+            })
+        }
+
+    })
+</script>
